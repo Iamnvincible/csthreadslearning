@@ -13,23 +13,18 @@ namespace Parallels
         static void Main(string[] args)
         {
 
+
+            //Parallel.For() 并行运行迭代
             ParallelLoopResult result = Parallel.For(0, 10, i =>
             {
                 Console.WriteLine("{0},task:{1},thread:{2}", i, Task.CurrentId, Thread.CurrentThread.ManagedThreadId);
                 Thread.Sleep(10);
             });
-            Console.WriteLine("is completed:{0}", result.IsCompleted);
-
-            var sw = new Stopwatch();
-            sw.Start();
-            Task.Delay(3000);
-            Console.WriteLine("async:running for {0} seconds", sw.Elapsed.TotalSeconds);
-            Thread.Sleep(1000);//这段时间阻塞线程，不能处理事情。。
-            Console.WriteLine("async:running for {0} seconds", sw.Elapsed.TotalSeconds);
+            Console.WriteLine("is completed:{0},lowest break iteration:{1}", result.IsCompleted,result.LowestBreakIteration);
 
 
-
-            ParallelLoopResult result2 = Parallel.For(10, 700, async (i, pls) =>
+            //提前停止Parallel.For()
+            ParallelLoopResult result2 = Parallel.For(10, 70, async (i, pls) =>
                 {
                     Console.WriteLine("i:{0} task {1}", i, Task.CurrentId);
                     await Task.Delay(10);
@@ -38,8 +33,56 @@ namespace Parallels
 
             Console.WriteLine("is completed:{0}", result2.IsCompleted);
             Console.WriteLine("lowest break iteration:{0}", result2.LowestBreakIteration);
+
+            //这个简直太难了
+            Parallel.For<string>(0, 20, () =>
+            {
+                Console.WriteLine("init thread {0},task {1} ", Thread.CurrentThread.ManagedThreadId, Task.CurrentId);
+                return String.Format("t{0}", Thread.CurrentThread.ManagedThreadId);
+            }, (i, pls, str1) =>
+            {
+                Console.WriteLine("Body i {0} str1 {1} thread {2} task {3}", i, str1, Thread.CurrentThread.ManagedThreadId, Task.CurrentId);
+                Thread.Sleep(10);
+                return String.Format("i {0}", i);
+            }, (str1) =>
+            {
+                Console.WriteLine("finally {0}", str1);
+            });
+
+            //ForEach()  并行版的foreach
+            string[] data = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" ,"ten","eleven","twelve"};
+            ParallelLoopResult result3 = Parallel.ForEach<string>(data, s =>
+            {
+                Console.WriteLine(s);
+            });
+
+            //多个任务并行运行
+            Parallel.Invoke(Foo, Bar,Bar1);
+
+
+
             Console.ReadLine();
 
+        }
+        static void Foo()
+        {
+            Console.WriteLine("foo");
+            for (int i = 0; i < 1000; i++)
+            {
+
+            }
+        }
+        static void Bar()
+        {
+            Console.WriteLine("bar");
+        }
+        static void Bar1()
+        {
+            Console.WriteLine("ba1r");
+            for (int i = 0; i < 200000; i++)
+            {
+
+            }
         }
     }
 }
