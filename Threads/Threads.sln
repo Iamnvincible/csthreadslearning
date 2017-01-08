@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26014.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "createthread", "createthread\createthread.csproj", "{1871528D-576A-4283-89EB-B9A767587114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{A5AE4950-C245-444B-9199-8228BC2BEAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parallels", "Parallel\Parallels.csproj", "{559A9E98-7899-43D1-9B8D-D3F3E75F18B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{1871528D-576A-4283-89EB-B9A767587114}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1871528D-576A-4283-89EB-B9A767587114}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1871528D-576A-4283-89EB-B9A767587114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AE4950-C245-444B-9199-8228BC2BEAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AE4950-C245-444B-9199-8228BC2BEAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AE4950-C245-444B-9199-8228BC2BEAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AE4950-C245-444B-9199-8228BC2BEAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559A9E98-7899-43D1-9B8D-D3F3E75F18B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559A9E98-7899-43D1-9B8D-D3F3E75F18B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559A9E98-7899-43D1-9B8D-D3F3E75F18B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559A9E98-7899-43D1-9B8D-D3F3E75F18B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
